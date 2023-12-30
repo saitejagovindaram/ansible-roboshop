@@ -49,3 +49,8 @@
       ansible.builtin.command: npm install 
       args:
         chdir: /app
+
+    - name: copy catalogue svc file
+      ansilbe.builtin.copy:
+        src: catalouge.service
+        dest: /etc/systemd/system
