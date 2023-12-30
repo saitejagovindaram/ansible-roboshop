@@ -51,6 +51,6 @@
         chdir: /app
 
     - name: copy catalogue svc file
-      ansilbe.builtin.copy:
+      ansible.builtin.copy:
         src: catalouge.service
         dest: /etc/systemd/system
