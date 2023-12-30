@@ -52,5 +52,5 @@
 
     - name: copy catalogue svc file
       ansible.builtin.copy:
-        src: catalouge.service
+        src: catalogue.service
         dest: /etc/systemd/system
