@@ -7,7 +7,9 @@
       ansible.builtin.dnf:
         name: nodejs
         state: absent
-    - name: Add nodejs package
-      ansible.builtin.dnf:
-        name: "nodejs-18.*"
-        state: present
+    # - name: Add nodejs package using dnf module
+    #   ansible.builtin.dnf:
+    #     name: "nodejs-18.*"
+    #     state: present
+    - name: Add nodejs 18 package using command module
+      ansible.builtin.command: dnf module enable nodejs:18 -y
