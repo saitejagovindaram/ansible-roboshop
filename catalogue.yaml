@@ -71,9 +71,13 @@
         state: present
     
     # Need to laod the mongo db
+    - name: load mongodb
+      ansible.builtin.command: mongo --host localhost --quiet --eval 'db.getSiblingDB("catalogue").products.count()'
+      register: product_count
 
     - name: load mongodb
       ansible.builtin.command: mongo --host 127.0.0.1:27017 < /app/schema/catalogue.js
+      when product_count == 0
 
     - name: start and enable catalogue
       ansible.builtin.service:
