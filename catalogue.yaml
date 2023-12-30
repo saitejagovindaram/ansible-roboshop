@@ -24,3 +24,9 @@
       ansible.builtin.package:
         name: nodejs
         state: present
+
+    - name: add roboshop user
+      ansible.builtin.user:
+        name: roboshop
+    
+    
