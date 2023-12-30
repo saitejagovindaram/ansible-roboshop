@@ -39,7 +39,4 @@
         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
         dest: /tmp
     
-    - name: Change the working directory to /app
-      ansible.builtin.command:
-      args:
-        chdir: /app
+    
