@@ -37,7 +37,7 @@
     - name: Download catalogue application source code zip file
       ansible.builtin.get_url:
         url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
-        dest: /tmp/catalogue.zip
+        dest: /tmp
     
     - name: Change the working directory to /app
       ansible.builtin.command:
