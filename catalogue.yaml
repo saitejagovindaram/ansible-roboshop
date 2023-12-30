@@ -73,7 +73,7 @@
     # Need to laod the mongo db
 
     - name: load mongodb
-      ansible.builtin.command: mongo --host localhost:27017 </app/schema/catalogue.js
+      ansible.builtin.command: mongo --host 127.0.0.1:27017 < /app/schema/catalogue.js
 
     - name: start and enable catalogue
       ansible.builtin.service:
