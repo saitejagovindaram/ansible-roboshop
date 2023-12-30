@@ -60,7 +60,7 @@
         daemon_reload: true
 
     - name: install mongo shell
-      ansible.builting.package:
+      ansible.builtin.package:
         name: mongo-org-shell
         state: present
     
