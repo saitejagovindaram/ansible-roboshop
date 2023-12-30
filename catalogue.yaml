@@ -67,7 +67,7 @@
 
     - name: install mongo shell
       ansible.builtin.package:
-        name: mongo-org-shell
+        name: mongodb-org-shell
         state: present
     
     # Need to laod the mongo db
