@@ -1,0 +1,13 @@
+---
+- name: Setup catalogue microserivce
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Disable nodejs package
+      ansible.builtin.dnf:
+        name: nodejs
+        state: absent
+    - name: Add nodejs package
+      ansible.builtin.dnf:
+        name: nodejs=18
+        state: present
