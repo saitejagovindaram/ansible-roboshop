@@ -1,7 +1,7 @@
 ---
 
 - name: setting rabbitmq for roboshop
-  hosts: localhost
+  hosts: rabbitmq
   become: yes
   tasks:
     - name: configure yum erlang repos
