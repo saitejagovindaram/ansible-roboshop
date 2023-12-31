@@ -1,6 +1,6 @@
 ---
 - name: Setup catalogue microserivce
-  hosts: localhost
+  hosts: catalogue
   become: yes
   tasks:
     # - name: Disable nodejs package using dnf module
@@ -71,8 +71,8 @@
         state: present
     
     # Need to laod the mongo db
-    - name: load mongodb
-      ansible.builtin.command: mongo --host localhost --quiet --eval 'db.getSiblingDB("catalogue").products.count()'
+    - name: load mongodb test
+      ansible.builtin.command: mongo --host mongodb.saitejag.site --quiet --eval 'db.getSiblingDB("catalogue").products.count()'
       register: product_count
 
     # - name: print product count
@@ -80,7 +80,7 @@
     #     msg: "product count is: {{product_count}}"
 
     - name: load mongodb
-      ansible.builtin.command: mongo --host 127.0.0.1:27017 < /app/schema/catalogue.js
+      ansible.builtin.command: mongo --host mongodb.saitejag.site:27017 < /app/schema/catalogue.js
       when: product_count.stdout == "0"
 
     - name: start and enable catalogue
