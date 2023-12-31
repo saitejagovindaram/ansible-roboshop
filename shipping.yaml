@@ -1,7 +1,7 @@
 ---
 
 - name: configuring shipping micro service
-  hosts: localhost
+  hosts: shipping
   become: yes
   vars:
     mysql_password: RoboShop@1
@@ -50,7 +50,7 @@
     
 
     - name: check cities schema exists or not
-      ansible.builtin.command:  mysql -h 127.0.0.1 -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
+      ansible.builtin.command:  mysql -h mysql.saitejag.site -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
       register: schema
 
     # - name: print output
@@ -58,7 +58,7 @@
     #     msg: "schema output: {{schema}}"
 
     - name: load sample mysql data
-      ansible.builtin.shell: "mysql -h 127.0.0.1 -uroot -p{{mysql_password}} < /app/schema/shipping.sql"
+      ansible.builtin.shell: "mysql -h mysql.saitejag.site -uroot -p{{mysql_password}} < /app/schema/shipping.sql"
       when: schema.stdout == "0"
 
 
