@@ -1,7 +1,7 @@
 ---
 
 - name: payment microservice
-  hosts: localhost
+  hosts: payments
   become: yes
   tasks:
     - name: intall packages
