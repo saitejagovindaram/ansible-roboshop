@@ -1,7 +1,7 @@
 ---
 
 - name: Setting up Redis for roboshop
-  hosts: localhost
+  hosts: redis
   become: yes
   tasks:
     - name: install remi release
