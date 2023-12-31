@@ -1,6 +1,6 @@
 ---
 - name: Setup mongoDb for Roboshop
-  hosts: localhost
+  hosts: mongodb
   become: yes
   tasks:
     - name: copy mongo DB repo
