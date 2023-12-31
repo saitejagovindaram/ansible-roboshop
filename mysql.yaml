@@ -1,7 +1,7 @@
 ---
 
 - name: Settig up mysql for roboshop
-  hosts: localhost
+  hosts: mysql
   become: yes
   tasks:
     - name: disable default mysql
@@ -26,5 +26,5 @@
 
     - name: setup root password for mysql
       ansible.builtin.command: mysql_secure_installation --set-root-pass RoboShop@1
-      
+
     
