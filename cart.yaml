@@ -1,6 +1,6 @@
 ---
 - name: Setup cart microserivce
-  hosts: localhost
+  hosts: cart
   become: yes
   tasks:
 
