@@ -6,7 +6,7 @@
   tasks:
     - name: intall packages
       ansible.builtin.package:
-        name: {{item}}
+        name: '{{item}}'
         state: present
       loop:
         - python36
