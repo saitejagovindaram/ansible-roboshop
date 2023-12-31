@@ -1,7 +1,7 @@
 ---
 
 - name: Setting up Web app for roboshop
-  hosts: localhost
+  hosts: web
   become: yes
   tasks:
     - name: Installing Nginx
