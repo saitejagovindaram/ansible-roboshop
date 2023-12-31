@@ -1,6 +1,6 @@
 ---
 - name: Setup user microserivce
-  hosts: localhost
+  hosts: user
   become: yes
   tasks:
 
