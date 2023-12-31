@@ -1,0 +1,64 @@
+---
+
+- name: configuring shipping micro service
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install maven
+      ansible.builtin.package:
+        name: maven
+        state: present
+    
+    - name: create user for shipping
+      ansible.builtin.user:
+        name: roboshop
+    
+    - name: create app directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
+
+    - name: download shipping application zip file
+      ansible.builtin.get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/shipping.zip
+        path: /tmp
+
+    - name: unzip shipping application
+      ansible.builtin.unarchive:
+        src: /tmp/shipping.zip
+        dest: /app
+    
+    - name: install dependencies
+      ansible.builtin.command: mvn clean package
+      args:
+        chdir: /app
+      
+    - name: move artifact to app directory
+      ansible.builtin.command: mv /app/target/shipping-1.0.jar /app/shipping.jar
+      
+    - name: copy serice file
+      ansible.builtin.copy:
+        src: shipping.service
+        dest: /etc/systemd/system
+
+    - name: installing mysql client
+      ansible.builtin.package:
+        name: mysql
+        state: present
+    
+    - name: load sample mysql data
+      ansible.builtin.shell: "mysql -h 127.0.0.1 -uroot -pRoboShop@1 < /app/schema/shipping.sql"
+
+
+    - name: relaod daemon
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+
+    - name: start and enable shipping
+      ansible.builtin.service:
+        name: shipping
+        enabled: yes
+        state: started
+
+    
+    
