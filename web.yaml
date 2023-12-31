@@ -1,0 +1,11 @@
+---
+
+- name: Setting up Web app for roboshop
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Installing Nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+    
